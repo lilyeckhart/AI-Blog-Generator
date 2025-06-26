@@ -1,4 +1,4 @@
-// server/server.js
+// server/index.js
 const express = require('express');
 const fetch = require('node-fetch');
 const dotenv = require('dotenv');
