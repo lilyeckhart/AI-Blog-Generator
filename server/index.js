@@ -16,12 +16,6 @@ const limiter = rateLimit({
 	}
 });
 
-app.use('/generate', limiter);
-
-// Middleware setup
-dotenv.config(); // Load .env variables
-const allowedOrigins = ["https://ai-blog-generator-frontend-kes5.onrender.com"];
-
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like Postman) or from allowed frontend
@@ -33,6 +27,12 @@ app.use(cors({
   },
   credentials: true,
 }));
+
+app.use('/generate', limiter);
+
+// Middleware setup
+dotenv.config(); // Load .env variables
+const allowedOrigins = ["https://ai-blog-generator-frontend-kes5.onrender.com"];
 
 app.use(express.json()); // Parse incoming JSON request bodies
 
