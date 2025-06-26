@@ -20,7 +20,20 @@ app.use('/generate', limiter);
 
 // Middleware setup
 dotenv.config(); // Load .env variables
-app.use(cors()); // Allow cross-origin requests (React frontend)
+const allowedOrigins = ["https://ai-blog-generator-frontend-kes5.onrender.com"];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like Postman) or from allowed frontend
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
+
 app.use(express.json()); // Parse incoming JSON request bodies
 
 // Test route to confirm server is running
