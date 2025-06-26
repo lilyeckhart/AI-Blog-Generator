@@ -15,7 +15,7 @@ function App() {
     setOutput(""); // clears previous output
 
     try {
-      const response = await fetch("https://ai-blog-generator-backend-ghav.onrender.com", {
+      const response = await fetch("https://ai-blog-generator-backend-ghav.onrender.com/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -48,7 +48,7 @@ function App() {
     setOutput("");
 
     try {
-      const response = await fetch("https://ai-blog-generator-backend-ghav.onrender.com", {
+      const response = await fetch("https://ai-blog-generator-backend-ghav.onrender.com/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
