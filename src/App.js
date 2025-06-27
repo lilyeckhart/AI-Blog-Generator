@@ -78,7 +78,7 @@ function App() {
   const handleClear = async () => {
     setTopic("");
     setTone("Informative");
-    setCount(300);
+    setCount(100);
     setOutput("");
     setLoading(false);
   };
