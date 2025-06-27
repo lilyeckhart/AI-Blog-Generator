@@ -55,7 +55,7 @@ app.post('/generate', async (req, res) => {
             },
             body: JSON.stringify({
                 model: 'openrouter/auto',
-                max_tokens: Math.min(2500, Math.floor(count * 1.5)),
+                max_tokens: Math.min(250, Math.floor(count * 1.5)),
                 messages: [
                     { role: 'system', content: 'You are a helpful assistant who writes SEO-friendly blog posts.' },
                     { role: 'user', content: `Write a ${tone} blog post about ${topic} in ${count} words.` }
