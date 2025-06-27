@@ -77,7 +77,7 @@ OPENROUTER_API_KEY=your_api_key_here
 ## Author
 
 **Lily Eckhart**  
-[GitHub](https://github.com/your-username) — Fullstack Web Developer
+[GitHub](https://github.com/lilyeckhart) — Fullstack Web Developer
 
 ---
 
