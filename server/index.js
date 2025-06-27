@@ -64,7 +64,7 @@ app.post('/generate', async (req, res) => {
         });
 
         const data = await response.json();
-        console.log("OpenRouter response:", data);
+        // console.log("OpenRouter response:", data);
 
         const blogPost = data.choices?.[0]?.message?.content || 'No blog post returned';
         res.json({ blogPost });
