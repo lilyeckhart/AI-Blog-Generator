@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 
 function App() {
   const [topic, setTopic] = useState(""); // const for user to write topic
-  const [count, setCount] = useState(300); // const for word count
+  const [count, setCount] = useState(100); // const for word count
   const [tone, setTone] = useState("Informative"); // const for user to pick tone from dropdown
   const [loading, setLoading] = useState(false); // shows "loading" when AI generating post
   const [output, setOutput] = useState(""); // shows output of AI post
