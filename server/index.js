@@ -1,4 +1,3 @@
-// server/index.js
 const express = require('express');
 const fetch = require('node-fetch');
 const dotenv = require('dotenv');
@@ -7,21 +6,23 @@ const rateLimit = require('express-rate-limit');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// === Load .env variables ===
+// Enable trust for Render's proxy
+app.set('trust proxy', 1);
+
+// Load env vars
 dotenv.config();
 
-// === CORS SETUP ===
+// === CORS ===
 app.use(cors({
     origin: "https://ai-blog-generator-frontend-kes5.onrender.com",
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
     credentials: true
 }));
-app.options("*", cors());
 
-// === RATE LIMITER ===
+// === Rate Limiter ===
 const limiter = rateLimit({
-    windowMs: 60 * 1000, // 1 minute
+    windowMs: 60 * 1000,
     max: 5,
     handler: (req, res) => {
         res.status(429).json({
@@ -31,15 +32,15 @@ const limiter = rateLimit({
 });
 app.use('/generate', limiter);
 
-// === PARSE JSON REQUEST BODIES ===
+// Parse JSON
 app.use(express.json());
 
-// === HEALTH CHECK ===
+// Health check
 app.get('/', (req, res) => {
     res.send('Server is running!');
 });
 
-// === GENERATE ENDPOINT ===
+// === Blog Post Generator ===
 app.post('/generate', async (req, res) => {
     try {
         const { topic, count, tone } = req.body;
@@ -49,12 +50,12 @@ app.post('/generate', async (req, res) => {
             headers: {
                 Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
                 'Content-Type': 'application/json',
-                'HTTP-Referer': 'https://ai-blog-generator-frontend-kes5.onrender.com', // 👈 Update this for production
+                'HTTP-Referer': 'https://ai-blog-generator-frontend-kes5.onrender.com',
                 'X-Title': 'AI Blog Generator'
             },
             body: JSON.stringify({
                 model: 'openrouter/auto',
-                max_tokens: Math.floor(count * 1.5),
+                max_tokens: Math.min(2500, Math.floor(count * 1.5)),
                 messages: [
                     { role: 'system', content: 'You are a helpful assistant who writes SEO-friendly blog posts.' },
                     { role: 'user', content: `Write a ${tone} blog post about ${topic} in ${count} words.` }
@@ -74,7 +75,7 @@ app.post('/generate', async (req, res) => {
     }
 });
 
-// === START SERVER ===
+// Start server
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
