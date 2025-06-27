@@ -66,7 +66,7 @@ app.post('/generate', async (req, res) => {
         const data = await response.json();
         // console.log("OpenRouter response:", data);
 
-        const blogPost = data.choices?.[0]?.message?.content || 'No blog post returned';
+        const blogPost = data.choices?.[0]?.message?.content || 'Too many requests, please try again later!';
         res.json({ blogPost });
 
     } catch (error) {
