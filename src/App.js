@@ -123,8 +123,8 @@ function App() {
             id="count"
             type="range"
             name="count"
-            min="100"
-            max="700"
+            min="10"
+            max="300"
             step="50"
             value={count}
             className="w-full h-2 rounded-lg appearance-none cursor-pointer"
