@@ -9,6 +9,7 @@ function App() {
 
   const outputRef = useRef(null); // for auto-scroll
 
+  // handles submit button
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevents page from reloading
     setLoading(true); // shows loading message
@@ -43,6 +44,7 @@ function App() {
 
   };
 
+  // handles regenerating post with same inputs
   const handleRegenerate = async () => {
     setLoading(true);
     setOutput("");
@@ -75,6 +77,7 @@ function App() {
     }
   };
 
+  // handles clear button to reset form
   const handleClear = async () => {
     setTopic("");
     setTone("Informative");
@@ -84,6 +87,7 @@ function App() {
   };
 
 
+  // Blog Post Display
   return (
     <div className="min-h-screen p-5 flex justify-center items-center bg-gray-100">
       <div className="max-w-2xl w-full mx-auto p-10 bg-blue-200 shadow-md rounded-2xl">

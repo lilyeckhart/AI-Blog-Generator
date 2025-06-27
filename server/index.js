@@ -12,7 +12,7 @@ app.set('trust proxy', 1);
 // Load env vars
 dotenv.config();
 
-// === CORS ===
+// CORS 
 app.use(cors({
     origin: "https://ai-blog-generator-frontend-kes5.onrender.com",
     methods: ["GET", "POST", "OPTIONS"],
@@ -20,7 +20,7 @@ app.use(cors({
     credentials: true
 }));
 
-// === Rate Limiter ===
+// Rate Limiter
 const limiter = rateLimit({
     windowMs: 60 * 1000,
     max: 5,
@@ -35,12 +35,12 @@ app.use('/generate', limiter);
 // Parse JSON
 app.use(express.json());
 
-// Health check
+// Check if server is running
 app.get('/', (req, res) => {
     res.send('Server is running!');
 });
 
-// === Blog Post Generator ===
+// Blog Post Generator
 app.post('/generate', async (req, res) => {
     try {
         const { topic, count, tone } = req.body;
@@ -64,7 +64,7 @@ app.post('/generate', async (req, res) => {
         });
 
         const data = await response.json();
-        // console.log("OpenRouter response:", data);
+        // console.log("OpenRouter response:", data); // use to check log errors
 
         const blogPost = data.choices?.[0]?.message?.content || 'Too many requests, please try again later!';
         res.json({ blogPost });
