@@ -25,6 +25,11 @@ This project was built as part of my web development portfolio to showcase the a
 - Rate limiting on backend to prevent spam
 - API key securely hidden using Express.js proxy
 
+## Screenshots
+![Initial View](screenshots\blank.PNG)
+![Generating View](screenshots\generating.PNG)
+![Output View](screenshots\output.PNG)
+
 ## Tech Stack
 
 **Frontend**
