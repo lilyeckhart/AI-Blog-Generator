@@ -15,7 +15,7 @@ dotenv.config();
 // CORS - Allow both production and localhost
 const allowedOrigins = [
   "https://ai-blog-generator-frontend-kes5.onrender.com",
-  "revamped-ai-blog-generator.netlify.app",
+  "https://revamped-ai-blog-generator.netlify.app",
   "http://localhost:3000",
   "http://localhost:3001",
 ];
